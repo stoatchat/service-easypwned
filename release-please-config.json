@@ -5,9 +5,9 @@
     "cargo-workspace"
   ],
   "packages": {
-    ".": {
+    "easypwned": {
       "release-type": "rust",
-      "changelog-path": "easypwned/CHANGELOG.md",
+      "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "draft": false,
