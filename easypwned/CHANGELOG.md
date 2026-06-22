@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/stoatchat/service-easypwned/compare/v0.1.2...v0.1.3) (2026-06-22)
+
+
+### Bug Fixes
+
+* new axum paths ([#31](https://github.com/stoatchat/service-easypwned/issues/31)) ([fd228c0](https://github.com/stoatchat/service-easypwned/commit/fd228c0dbf83daaa4bdc081ac8397fea24231449))
+
 ## [0.1.2](https://github.com/stoatchat/service-easypwned/compare/v0.1.1...v0.1.2) (2026-06-22)
 
 
