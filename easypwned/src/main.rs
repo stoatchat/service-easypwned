@@ -53,8 +53,8 @@ async fn main() -> ::anyhow::Result<(), ::anyhow::Error> {
 
     let bloom_ext = Arc::new(bloom);
     let app = Router::new()
-        .route("/hash/:hash", get(handler_hash))
-        .route("/pw/:pw", get(handler_pw))
+        .route("/hash/{hash}", get(handler_hash))
+        .route("/pw/{pw}", get(handler_pw))
         .route("/check", post(handler_check))
         .layer(Extension(bloom_ext));
 
