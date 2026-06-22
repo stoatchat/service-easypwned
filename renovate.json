@@ -6,7 +6,10 @@
   "semanticCommits": "enabled",
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
-  "lockFileMaintenance": {
-    "enabled": true
-  }
+  "packageRules": [
+    {
+      "matchManagers": ["cargo"],
+      "rangeStrategy": "pin"
+    }
+  ]
 }
