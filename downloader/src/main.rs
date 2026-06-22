@@ -15,7 +15,6 @@ pub struct DownloadConfig {
     pub number_of_downloader: u32,
 }
 
-
 #[derive(Parser, Debug, Clone)]
 pub struct Opt {
     #[arg(long = "sink-bloom-file")]
@@ -27,41 +26,31 @@ pub struct Opt {
 }
 
 pub async fn download(config: DownloadConfig) {
-
     let (sinks_jhs, sinks_senders) = {
         let mut jhs = vec![];
         let mut senders = vec![];
 
-        match config.opt.sink_stdout {
-            true => {
-
-                let (jh, sender) = SinkStdout::spawn();
-                jhs.push(jh);
-                senders.push(sender);
-            },
-            false => {}
+        if config.opt.sink_stdout {
+            let (jh, sender) = SinkStdout::spawn();
+            jhs.push(jh);
+            senders.push(sender);
         };
 
-        match config.opt.sink_bloom_file {
-            Some(ref _v) => {
-                let (jh, sender) = SinkBloom::spawn(config.clone());
-                jhs.push(jh);
-                senders.push(sender);
-            },
-            None => {}
+        if let Some(ref _v) = config.opt.sink_bloom_file {
+            let (jh, sender) = SinkBloom::spawn(config.clone());
+            jhs.push(jh);
+            senders.push(sender);
         };
 
         (jhs, senders)
     };
 
-    if sinks_jhs.len() == 0 {
+    if sinks_jhs.is_empty() {
         eprintln!("you need to define a sink, try --sink_stdout");
         return;
     }
 
-    let (_coordinator_jh, coordinator) = DownloadCoordinator::spawn(
-        sinks_senders
-    );
+    let (_coordinator_jh, coordinator) = DownloadCoordinator::spawn(sinks_senders);
 
     for _i in 0..config.number_of_downloader {
         DownloaderHttp::spawn(coordinator.clone());
@@ -75,7 +64,6 @@ pub async fn download(config: DownloadConfig) {
 
 #[tokio::main]
 async fn main() -> ::anyhow::Result<(), ::anyhow::Error> {
-
     let opt: Opt = Opt::parse();
 
     let download_config = DownloadConfig {

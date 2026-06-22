@@ -1,9 +1,8 @@
-use anyhow::{Error};
+use anyhow::Error;
 use bloomfilter::Bloom;
 use serde_derive::{Deserialize, Serialize};
 use std::fs::File;
-use std::io::{Read};
-
+use std::io::Read;
 
 #[derive(Serialize, Deserialize)]
 pub struct BloomWithMetadata {
@@ -27,7 +26,7 @@ impl BloomWithMetadata {
 }
 
 pub fn bloom_get(path: &str) -> Result<BloomWithMetadata, Error> {
-    let mut file = File::open(&path)?;
+    let mut file = File::open(path)?;
     let mut buf = vec![];
     file.read_to_end(&mut buf)?;
 
