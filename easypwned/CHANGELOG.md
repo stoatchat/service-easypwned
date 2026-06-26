@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.1.4](https://github.com/stoatchat/service-easypwned/compare/v0.1.3...v0.1.4) (2026-06-26)
+
 ## [0.1.3](https://github.com/stoatchat/service-easypwned/compare/v0.1.2...v0.1.3) (2026-06-22)
 
 
