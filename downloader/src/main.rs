@@ -23,6 +23,10 @@ pub struct Opt {
     sink_stdout: bool,
     #[arg(long = "parallel", default_value = "60")]
     parallel: u32,
+    #[arg(long = "capacity", default_value = "1010000000")]
+    capacity: usize,
+    #[arg(long = "fp-rate", default_value = "0.01")]
+    fp_rate: f64,
 }
 
 pub async fn download(config: DownloadConfig) {

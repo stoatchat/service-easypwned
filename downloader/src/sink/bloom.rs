@@ -27,7 +27,15 @@ impl SinkBloom {
     }
 
     pub async fn run(&mut self) -> Result<(), ()> {
-        let mut bloom: Bloom<[u8]> = Bloom::new_for_fp_rate(1_010_000_000, 0.01);
+        let mut bloom: Bloom<[u8]> =
+            Bloom::new_for_fp_rate(self.config.opt.capacity, self.config.opt.fp_rate);
+        eprintln!(
+            "building bloom: capacity={} fp_rate={} bits={} hashfns={}",
+            self.config.opt.capacity,
+            self.config.opt.fp_rate,
+            bloom.number_of_bits(),
+            bloom.number_of_hash_functions()
+        );
 
         loop {
             match self.recv.recv().await {
