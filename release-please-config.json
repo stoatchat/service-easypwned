@@ -2,11 +2,35 @@
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
   "include-component-in-tag": false,
   "plugins": [
-    "cargo-workspace"
+    "cargo-workspace",
+    {
+      "type": "linked-versions",
+      "groupName": "easypwned",
+      "components": ["easypwned", "downloader", "easypwned_bloom"]
+    }
   ],
   "packages": {
     "easypwned": {
       "release-type": "rust",
+      "component": "easypwned",
+      "changelog-path": "CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "draft": false,
+      "prerelease": false
+    },
+    "downloader": {
+      "release-type": "rust",
+      "component": "downloader",
+      "changelog-path": "CHANGELOG.md",
+      "bump-minor-pre-major": true,
+      "bump-patch-for-minor-pre-major": true,
+      "draft": false,
+      "prerelease": false
+    },
+    "easypwned_bloom": {
+      "release-type": "rust",
+      "component": "easypwned_bloom",
       "changelog-path": "CHANGELOG.md",
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
